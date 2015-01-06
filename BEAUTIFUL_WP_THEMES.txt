@@ -1,0 +1,85 @@
+BEAUTIFUL WORDPRESS THEMES CODE REFERENCE:
+
+————————————————————————————————————————
+Adding some WordPress tags:
+————————————————————————————————————————
+
+<!-- replace doctype with the following --><!DOCTYPE HTML><!-- replace language attribute with the following --><html <?php language_attributes(); ?>><!-- add meta charset  --><meta charset="<?php bloginfo('charset');?>"><!-- replace title tag with the following --><title><?php	global $page, $paged;	wp_title( '|', true, 'right' );	bloginfo( 'name' );	$site_description = get_bloginfo( 'description', 'display' );	if ( $site_description && ( is_home() || is_front_page() ) )		echo " | $site_description";	if ( $paged >= 2 || $page >= 2 )		echo ' | ' . sprintf( __( 'Page %s' ), max( $paged, $page ) );?></title><!-- replace stylesheet link with the following --><link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" /><!—add the following comments statement (to keep commenting to blog posts only) --><?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script('comment-reply'); ?><!-- add the following before </head> --><?php wp_head(); ?><!-- replace body tag with the following --><body <?php body_class(); ?>><!-- replace your entire menu ul tag with the following --><?php wp_nav_menu( array( 'theme_location' => 'mainmenu' ) ); ?><!-- add the below where you want the search box to appear --><?php get_search_form(); ?><!-- add this before </body> in footer.php --><?php wp_footer(); ?>————————————————————————————————————————
+Creating your blog archive:
+————————————————————————————————————————
+
+<!-- add this to line 1 of index.php --><?php get_header(); ?><!-- add this to the last line of index.php --><?php get_footer(); ?><!-- add the below WordPress ‘loop’ between get_header & get_footer --><?php if ( have_posts() ) : ?><?php while ( have_posts() ) : the_post(); ?><article <?php post_class() ?> id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>"><div class="thumb"><?php the_post_thumbnail(); ?></div></a>
+<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2><div class="meta">Date <?php the_time('F Y') ?><br />Written by <?php the_author() ?></div><div class="newsExcerpt"><?php the_excerpt(); ?></div><div class="postmetadata">Posted in <?php the_category(', ') ?> | <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></div></article><?php endwhile; ?><?php endif; ?>
+
+
+————————————————————————————————————————
+Create a dynamic widget sidebar:
+————————————————————————————————————————
+
+<div class="sidebar"><div class="latestNews"><div class="widget-area"><?php if ( ! dynamic_sidebar( 'Sidebar Widgets' ) ) : ?><aside id="archives" class="widgets"><ul><?php wp_get_archives('type=monthly&limit=12'); ?></ul><?php endif; // end sidebar widget area ?></div></div></div>
+
+
+————————————————————————————————————————
+Creating the page.php template:
+————————————————————————————————————————
+
+<div class="featuredImage"><?php the_post_thumbnail(); ?></div><!--simplified loop --><?php if ( have_posts() ) : ?><?php while ( have_posts() ) : the_post(); ?><div id="contentFullWidth"><article><h1><?php the_title(); ?></h1><div class="entry"><?php the_content(); ?></div></article></div><?php endwhile; ?><?php endif; ?>
+
+————————————————————————————————————————
+Category archives :
+————————————————————————————————————————
+
+<?php if (is_category()) { ?><h1 id="archiveTitle"><?php single_cat_title(); ?></h1><?php } ?>
+
+
+————————————————————————————————————————
+Create a search results page:
+————————————————————————————————————————
+
+<?php if ( have_posts() ) : ?><h2 id="pageTitle">Here's what we've found:</h2><?php while ( have_posts() ) : the_post(); ?><article <?php post_class() ?> id="post-<?php the_ID(); ?>"><h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2><div class="entry"><?php the_excerpt(); ?></div></article><?php endwhile; ?><?php else : ?><h2>Bummer, couldn't find anything, try searching again!</h2><?php endif; ?>
+
+
+————————————————————————————————————————
+Custom search placeholder text:
+————————————————————————————————————————
+
+function my_search_form($text) {$text = str_replace('id="s"', 'id="s" placeholder="Search me!"', $text);return $text;}add_filter('get_search_form', 'my_search_form');
+
+
+————————————————————————————————————————
+Creating your home page:
+————————————————————————————————————————
+
+<?php/*Template Name: home*/?><?php get_header(); ?><div class="sliderArea"><!-- slider content here --></div><div id="contentWrap"><div id="content"><!-- any homepage specific content and WordPress functions can go here --></div></div><?php get_footer(); ?>
+
+————————————————————————————————————————
+Declaring template files:
+————————————————————————————————————————
+
+<?php/*Template Name: <!-- your template name -->*/?>
+
+————————————————————————————————————————
+Finishing touches:
+————————————————————————————————————————
+
+/*Theme Name: Your theme nameAuthor: Joe BloggsAuthor URI: www.yourdomain.comDescription: Write a description.Version: 1.0.0*/
+
+
+————————————————————————————————————————
+Featured images for pages:
+————————————————————————————————————————
+
+add_theme_support( 'post-thumbnails' );
+
+
+————————————————————————————————————————
+SVG support in media library:
+————————————————————————————————————————
+
+function cc_mime_types( $mimes ){$mimes['svg'] = 'image/svg+xml';return $mimes;}add_filter( 'upload_mimes', 'cc_mime_types' );
+
+————————————————————————————————————————
+SVG social sharing icons:
+————————————————————————————————————————
+
+<a href='http://www.facebook.com/share.php?u=<?php the_shortlink() ?>' target="_new"><div class="social"><img src="<?php echo get_bloginfo('template_directory');?>/images/icon-facebook.svg"/></div></a><a href='http://twitter.com/share?text=Check this out: <?php the_title(); ?> <?php echo wp_get_shortlink(get_the_ID()); ?>&url="'  target="_new"><div class="social"><img src="<?php echo get_bloginfo('template_directory');?>/images/icon-twitter.svg"/></div></a>

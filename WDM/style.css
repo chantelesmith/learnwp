@@ -1,0 +1,548 @@
+/*
+Theme Name: MyBlog Custom Theme
+Author: Chris Woodley
+Author URI: http://www.formecreative.co.uk
+Description: Custom WordPress theme with pages template, posts template, search results page, categories and latest news sidebar widgets, custom search placeholder text and custom social sharing buttons.
+Version: 1.0.0
+*/
+* {
+	vertical-align: baseline;
+	outline: 0;
+	padding: 0;
+}
+.clearBase {
+	clear:both;
+}
+.clearFix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+body {
+	background-color: #fff;
+	color:#666;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+	margin: 0;
+}
+h1, h2, h3, h4 {
+	font-weight:300;
+}
+h2, h3, h4 {
+	color:#de543e;
+}
+h1 {
+	font-size:2em;
+	color:#FFF;
+	background-color:#de543e;
+	padding:5px 10px;
+	display:inline-block;
+}
+p {
+	font-size: 12px;
+	font-weight:normal;
+	font-family:Helvetica, Arial, "Trebuchet MS";
+	color:#999;
+}
+a {
+	color:#de543e;
+	text-decoration:none
+}
+a:hover {
+	color:#000;
+}
+blockquote p {
+	background-color:#f3f3f3;
+	padding:15px;
+	border-left:2px solid #de543e;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	font-style:italic;
+}
+img {
+	width:100%;
+	height:auto;
+}
+img.ajax-loader,
+img.mepr-loading-gif,
+img.stripe-loading-gif {
+	width:16px;
+}
+#wrapper {
+	max-width: 980px;
+	width:100%;
+	margin: 0 auto;
+	padding: 0;
+}
+.fullWidthWrapper {
+	margin:20px 2%
+}
+header {
+}
+iframe {
+	width: 100%;
+}
+.featuredImage {
+	max-height:550px;
+	overflow:hidden;
+	position:relative;
+}
+.orange {
+	color:#de543e;
+}
+.socialBox {
+	display:block;
+}
+.social img {
+	float:left;
+	margin-right:5px;
+	width:30px;
+	height:auto;
+}
+.social img:hover {
+	opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		MAIN NAV STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.logo {
+	float:left;
+	background-image:url(images/logo.svg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-color:#de543e;
+	width:100px;
+	height:43px;
+}
+.mainMenu {
+}
+.mainMenu ul {
+	padding:0;
+	margin:0;
+}
+.mainMenu ul li {
+	list-style: none;
+	float: left;
+}
+.mainMenu ul li a {
+	background-color: #fff;
+	padding: 10px;
+	color: #000;
+	display:block;
+	height:23px;
+}
+.mainMenu ul li ul {
+	z-index:5000;
+	display:none;
+	position:absolute;
+	clear:both;
+}
+.mainMenu ul li:hover ul {
+	display: block;
+	margin: 0;
+}
+.mainMenu ul li:hover ul li {
+	display: block;
+	float:none;
+	margin:0;
+	padding:0;
+	text-align:left;
+	color:#000;
+}
+.mainMenu ul li:hover ul li:last-child {
+	border-bottom: none;
+}
+.mainMenu ul li:hover ul li a {
+	font-size:12px;
+	font-weight:400;
+	margin:0;
+	padding:0 auto 0 15px;
+	display:block;
+}
+.mainMenu ul li:hover ul li a {
+	padding:10px;
+}
+.mainMenu ul li:hover > a {
+	background-color:#de543e;
+	color:#FFF;
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		SLIDER STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.tp-caption a {
+	color:#fff !important;
+}
+.tp-caption a:hover {
+	color:#000 !important;
+	cursor:pointer !important;
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		MAIN CONTENT STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+#contentWrap {
+	width: 100%;
+	overflow: auto;
+}
+#content {
+	width: 63.26%;
+	float: left;
+}
+#contentFullWidth {
+	width: 100%;
+	float: left;
+}
+#content ul,
+#content ol, 
+#contentFullWidth ul,
+#contentFullWidth ol {
+	margin-left:0;
+	list-style-position:inside;
+	text-indent: -10px;
+	padding-left:10px;
+}
+#content ul li,
+#content ol li,
+#contentFullWidth ul li,
+#contentFullWidth ol li {
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:10px;
+	font-family:Helvetica, Arial, "Trebuchet MS";
+}
+#content ul li,
+#contentFullWidth ul li {
+	list-style-type:square;
+}
+#content article, .widget-area aside, form#commentform {
+	margin-bottom: 20px;
+}
+div.entry, div.entry p {
+	margin: 10px 0;
+}
+.widget-area {
+	width: 200px;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		SEARCH BAR STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.headerSearch {
+	float:right;
+	margin: 7px 2% 0px  2%;
+}
+#searchform label {
+	display: none;
+}
+input#s {
+	border: none;
+	background-color:#f3f3f3;
+	color: #888;
+	padding: 8px 10px;
+	width: 75px;
+	height:13px;
+}
+input#s:focus {
+	width: 200px;
+	-moz-transition: width 0.25s ease-out;
+	-webkit-transition: width 0.25s ease-out;
+	transition: width 0.25s ease-out;
+}
+#searchform input[type="submit"] {
+	cursor: pointer;
+	background-image:url(images/icon-search.svg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	height:29px;
+	width:29px;
+	border-radius: 15px;
+	border:none;
+	background-color:#de543e;
+	background-size: 12px 12px;
+	margin:0px;
+	padding:0px;
+	text-indent:-9999px;
+}
+#searchform input[type="submit"]:hover {
+	background-color:#000;
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		SIDEBAR STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.sidebar {
+	width:22.44%;
+	float:right;
+	padding-right:2%;
+	padding-left:2%;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		BLOG SIDEBAR STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.widget h4 {
+	border-top: 2px #e1dede solid;
+	padding-top: 15px;
+}
+.latestNews {
+	font-family:Helvetica, Arial, "Trebuchet MS";
+	padding: 0;
+}
+.latestNews h3 {
+	font-family: 'Open Sans', sans-serif;
+}
+.latestNews ul {
+	padding:0;
+	margin:10px 0 0 0;
+}
+.latestNews ul li {
+	list-style: none;
+	font-size:12px;
+}
+.latestNews ul li a {
+	font-weight:bold;
+	width:100%;
+	text-decoration:none;
+}
+.latestNews .post-date {
+	display:block;
+	padding:0;
+	margin-bottom: 20px;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+	POSTED COMMENTS STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.comment-body {
+	font-family:Helvetica, Arial, "Trebuchet MS";
+	padding:10px;
+	font-weight:normal;
+}
+.commentlist .reply {
+	text-align:center;
+	background-color: #de543e;
+	padding:3px;
+	width:50px;
+}
+.commentlist .reply a {
+	color:#FFF;
+}
+
+.commentlist .vcard {
+	margin-bottom:10px;
+}
+.commentlist .vcard cite.fn {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+	font-size:16px;
+	font-style:normal;
+}
+.commentlist .vcard img.photo {
+	display:none;
+}
+.commentlist .vcard img.avatar {
+	display:none;
+}
+.commentlist .comment {
+	border-top:#eee solid 1px;
+}
+.commentlist .children {
+	border-left:#000 solid 2px;
+	background-color:#f3f3f3;
+}
+ol.commentlist,
+ul.commentlist,
+ol.commentlist li,
+ul.commentlist li {
+	text-indent: 0 !important;
+	padding-left: 0 !important;
+	list-style:none !important;
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+	FORM STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+#commentform #author,
+#commentform-text,
+#commentform #email,
+#commentform #url,
+#commentform #comment,
+#commentform #submit {
+	width:100%;
+	font-family: Helvetica, Arial, "Trebuchet MS";
+	border:none;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	color:#666;
+	margin-bottom:10px;
+	text-indent:10px;
+	font-size:12px;
+}
+#commentform #author,
+#commentform-text,
+#commentform #email,
+#commentform #url {
+	line-height:31px;
+	height:31px;
+	background-color:#f3f3f3;
+}
+#commentform #comment {
+	height:150px;
+	padding-top:10px;
+	background-color:#f3f3f3;
+}
+#commentform #submit {
+	background-color:#de543e;
+	font-weight:bold;
+	text-indent:0;
+	text-align:center;
+	color:#fff;
+	line-height:30px;
+	cursor:pointer;
+	width:100%;
+	border:none;
+}
+#commentform #submit:hover {
+	background-color:#000;
+}
+
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+	FOTTER STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+footer {
+	padding:10px 0% 20px 0%;
+	clear:both;
+	border-top:2px solid #de543e;
+	margin-top:20px;
+}
+nav.footerMenu ul li {
+	list-style: none;
+	display: inline;
+	margin-right: 15px;
+}
+
+@media only screen 
+and (max-width : 1000px) {
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		MAIN NAV STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.mainMenu {
+	display:none;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		SEARCH BAR STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.headerSearch {
+	float:left;
+	margin-bottom:7px;
+	margin-left:3%;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		MAIN CONTENT STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+#content, #contentFullWidth {
+	width: 94%;
+	float: none;
+	margin-left:3%;
+	margin-right:3%;
+}
+div.newsExcerpt, div.meta {
+	display:none;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+		SIDEBAR STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+.sidebar {
+	width:94%;
+	float:none;
+	margin-left:3%;
+	margin-right:3%;
+	padding-left:0;
+	padding-right:0;
+	margin-top:20px;
+	border-top:#000 2px solid;
+}
+
+/* ------------------------------------------------------
+---------------------------------------------------------
+	FOTTER STYLES
+---------------------------------------------------------
+--------------------------------------------------------- */
+
+footer {
+	margin-left:3%;
+	margin-right:3%;
+}
+
+
+}
+
+@media only screen 
+and (max-width : 605px) {
+	
+.logo {
+	background-image:url(images/icon-logo.svg);
+	width:43px;
+	height:43px;
+}
+input#s {
+	width: 65px;
+}
+input#s:focus {
+	width: 150px;
+}
+
+}
